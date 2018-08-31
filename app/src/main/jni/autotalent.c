@@ -368,6 +368,7 @@ void setAutotalentKey(Autotalent * autotalent, char *keyPtr)
 	}
 
 	autotalent->m_pfKey = key;
+
 	__android_log_print(ANDROID_LOG_DEBUG, "libautotalent.so",
 			    "A: %d, Bb: %d, B: %d, C: %d, Db: %d, D: %d, Eb: %d, E: %d, F: %d, Gb: %d, G: %d, Ab: %d",
 			    autotalent->m_pfKey[AT_A],
@@ -382,6 +383,7 @@ void setAutotalentKey(Autotalent * autotalent, char *keyPtr)
 			    autotalent->m_pfKey[AT_Gb],
 			    autotalent->m_pfKey[AT_G],
 			    autotalent->m_pfKey[AT_Ab]);
+
 }
 
 // Set input and output buffers
