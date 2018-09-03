@@ -55,6 +55,7 @@ public class AudioController {
     }
 
     public boolean isValidRecorder() {
+
         AudioRecord recorder = new AudioRecord(MediaRecorder.AudioSource.MIC,
                 mInputSampleRate, Constants.DEFAULT_CHANNEL_CONFIG,
                 Constants.DEFAULT_PCM_FORMAT, mInputBufferSize);
@@ -65,6 +66,8 @@ public class AudioController {
 
     public AudioRecord getRecorder()
             throws IllegalArgumentException {
+
+        // todo: auth issue.
         AudioRecord recorder = new AudioRecord(MediaRecorder.AudioSource.MIC,
                 mInputSampleRate, Constants.DEFAULT_CHANNEL_CONFIG,
                 Constants.DEFAULT_PCM_FORMAT, mInputBufferSize);
