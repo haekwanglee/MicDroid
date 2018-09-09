@@ -27,6 +27,7 @@ import android.media.AudioRecord;
 import android.media.AudioTrack;
 import android.media.MediaRecorder;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 import com.intervigil.micdroid.helper.DialogHelper;
 
@@ -117,9 +118,9 @@ public class AudioController {
 
     public AudioTrack getPlayer() {
         int bufferSize = AudioTrack.getMinBufferSize(mInputSampleRate,
-                Constants.DEFAULT_CHANNEL_CONFIG, Constants.DEFAULT_PCM_FORMAT);
+                Constants.DEFAULT_CHANNEL_OUT_CONFIG, Constants.DEFAULT_PCM_FORMAT);
         AudioTrack player = new AudioTrack(AudioManager.STREAM_MUSIC, mInputSampleRate,
-                Constants.DEFAULT_CHANNEL_CONFIG, Constants.DEFAULT_PCM_FORMAT,
+                Constants.DEFAULT_CHANNEL_OUT_CONFIG, Constants.DEFAULT_PCM_FORMAT,
                 bufferSize, AudioTrack.MODE_STREAM);
         if (player.getState() != AudioTrack.STATE_INITIALIZED) {
             throw new IllegalArgumentException("Unable to initialize AudioRecord, buffer: " +

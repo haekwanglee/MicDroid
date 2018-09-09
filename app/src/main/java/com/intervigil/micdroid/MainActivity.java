@@ -53,6 +53,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.channels.FileChannel;
 
+import static com.intervigil.micdroid.helper.DialogHelper.showWarning;
+
 public class MainActivity extends AppCompatActivity
         implements RecordingOptionsDialogFragment.RecordingOptionsDialogListener,
         NameEntryDialogFragment.NameEntryDialogListener,
@@ -135,18 +137,20 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onMicStart() {
         if (!mAudioControl.isValidRecorder()) {
-            DialogHelper.showWarning(mContext,
+            showWarning(mContext,
                     R.string.unconfigured_audio_title,
                     R.string.unconfigured_audio_warning);
             return false;
         }
         if (mAudioControl.isLive()) {
-            if (!HeadsetHelper.isHeadsetPluggedIn(mContext)) {
-                DialogHelper.showWarning(mContext,
+
+            // TODO: check mic for live
+            /*if (!HeadsetHelper.isHeadsetPluggedIn(mContext)) {
+                showWarning(mContext,
                         R.string.no_headset_plugged_in_title,
                         R.string.no_headset_plugged_in_warning);
                 return false;
-            }
+            }*/
         }
 
         if (mRecorder == null) {
@@ -414,11 +418,11 @@ public class MainActivity extends AppCompatActivity
                             mDrawerLayout.closeDrawers();
                             break;
                         case R.id.nav_help_item:
-                            DialogHelper.showWarning(mContext, R.string.help_title,
+                            showWarning(mContext, R.string.help_title,
                                     R.string.help_text);
                             break;
                         case R.id.nav_about_item:
-                            DialogHelper.showWarning(mContext, R.string.about_title,
+                            showWarning(mContext, R.string.about_title,
                                     R.string.about_text);
                             break;
                         case R.id.nav_donate_item:

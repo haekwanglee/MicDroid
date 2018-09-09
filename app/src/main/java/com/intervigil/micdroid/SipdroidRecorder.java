@@ -243,6 +243,8 @@ public class SipdroidRecorder {
                         processLiveAudio(buf, num);
                         mAudioTrack.write(buf, 0, num);
                     }
+
+                    // todo: process live audio check
                     mWavWriter.write(buf, 0, num);
                 }
                 msg = recorderHandler.obtainMessage(RECORDER_MESSAGE_FINISHED);

@@ -25,6 +25,7 @@ public class Constants {
 
     // default recording parameters
     public static final int DEFAULT_CHANNEL_CONFIG = AudioFormat.CHANNEL_IN_MONO;
+    public static final int DEFAULT_CHANNEL_OUT_CONFIG = AudioFormat.CHANNEL_OUT_MONO;
     public static final int DEFAULT_PCM_FORMAT = AudioFormat.ENCODING_PCM_16BIT;
     public static final int DEFAULT_BUFFER_LIMIT = 32;
 
