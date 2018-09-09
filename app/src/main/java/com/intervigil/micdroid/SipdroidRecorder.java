@@ -25,6 +25,7 @@ import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.media.AudioRecord;
 import android.media.AudioTrack;
+import android.media.AudioDeviceInfo;
 import android.media.MediaPlayer;
 import android.os.Handler;
 import android.os.Message;
@@ -156,6 +157,10 @@ public class SipdroidRecorder {
                         AudioHelper.getPcmEncoding(Constants.DEFAULT_PCM_FORMAT));
                 if (mAudioControl.isLive()) {
                     mAudioTrack = mAudioControl.getPlayer();
+
+                    //AudioDeviceInfo.TYPE_BUILTIN_SPEAKER;
+                    //mAudioTrack.setPreferredDevice();
+
                 }
             } catch (IOException e) {
                 Log.e(TAG, "Unable to write WAV file", e);
@@ -188,6 +193,14 @@ public class SipdroidRecorder {
                 mAutotalentControl.initializeAutotalent(mAudioControl.getSampleRate());
                 AudioManager am = (AudioManager) mContext.getSystemService(Context.AUDIO_SERVICE);
                 am.setMode(AudioManager.MODE_NORMAL);
+
+                AudioDeviceInfo[] deviceList = am.getDevices(AudioManager.GET_DEVICES_OUTPUTS);
+                for (int index = 0; index < deviceList.length; index++) {
+                    if(deviceList[index].getType() == AudioDeviceInfo.TYPE_BUILTIN_SPEAKER) {
+                        mAudioTrack.setPreferredDevice(deviceList[index]);
+                    }
+                }
+                //am.setSpeakerphoneOn(true);
             }
         }
 
@@ -224,6 +237,7 @@ public class SipdroidRecorder {
                 mAudioRecord.startRecording();
                 if (mAudioControl.isLive()) {
                     mAudioTrack.play();
+
                 }
                 while (mRunning) {
                     // delay reading if it's not time for the next frame
