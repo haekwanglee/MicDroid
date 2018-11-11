@@ -2,6 +2,6 @@
 <resources>
     <bool name="prefs_prevent_screen_lock_default">true</bool>
     <bool name="prefs_enable_ads_default">true</bool>
-    <bool name="prefs_live_mode_default">false</bool>
+    <bool name="prefs_live_mode_default">true</bool>
     <bool name="prefs_formant_corr_default">false</bool>
 </resources>
